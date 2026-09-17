@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ملخص للمستثمر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Kufi+Arabic:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF;
+  --surface:#FBFBF9;
+  --ink:#111111;
+  --muted:#5E5E5C;
+  --faint:#9A9A96;
+  --rule:#E4E4DF;
+  --rule-strong:#111111;
+  --yellow:#F5C400;
+  --yellow-wash:#FFF8DC;
+  --yellow-ink:#7A6100;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F0F0E;
+    --surface:#151514;
+    --ink:#F2F1ED;
+    --muted:#A3A39E;
+    --faint:#6E6E69;
+    --rule:#2A2A27;
+    --rule-strong:#F2F1ED;
+    --yellow:#F5C400;
+    --yellow-wash:#2A2308;
+    --yellow-ink:#F0CF55;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F0F0E;
+  --surface:#151514;
+  --ink:#F2F1ED;
+  --muted:#A3A39E;
+  --faint:#6E6E69;
+  --rule:#2A2A27;
+  --rule-strong:#F2F1ED;
+  --yellow:#F5C400;
+  --yellow-wash:#2A2308;
+  --yellow-ink:#F0CF55;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;
+  font-size:16px;
+  line-height:1.8;
+  font-weight:400;
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 96px}
+h1,h2{font-family:"Noto Kufi Arabic","IBM Plex Sans Arabic",sans-serif;line-height:1.35;margin:0;font-weight:700}
+h1{font-size:clamp(28px,4.6vw,46px);letter-spacing:-0.01em}
+h2{font-size:clamp(20px,2.6vw,27px);margin:0 0 6px}
+p{margin:0 0 14px;max-width:62ch;color:var(--muted);line-height:1.9}
+p.lead{color:var(--ink);font-size:18px;max-width:56ch}
+.num{direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+
+header.masthead{padding:60px 0 36px;border-bottom:3px solid var(--rule-strong)}
+.brandbar{height:8px;background:var(--yellow);width:120px;margin-bottom:26px}
+.masthead p{margin-top:20px}
+
+section{padding:46px 0 10px;border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:none}
+.sec-head{margin-bottom:22px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sec-head::before{content:"";width:22px;height:5px;background:var(--yellow);flex:0 0 22px;transform:translateY(-4px)}
+
+/* format definition pair */
+.formats{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin:26px 0 10px}
+.fmt{background:var(--surface);border:1px solid var(--rule);padding:22px 22px 8px;position:relative}
+.fmt::before{content:"";position:absolute;top:0;inset-inline-start:0;width:100%;height:5px;background:var(--yellow)}
+.fmt h3{font-family:"Noto Kufi Arabic",sans-serif;font-size:21px;margin:6px 0 4px;font-weight:700;direction:ltr;text-align:right}
+.fmt .sub{color:var(--muted);font-size:14px;margin:0 0 14px}
+.fmt dl{margin:0;border-top:1px solid var(--rule)}
+.fmt dl div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--rule);font-size:15px}
+.fmt dt{color:var(--muted)}
+.fmt dd{margin:0;font-weight:600}
+
+.tablewrap{overflow-x:auto;margin:20px 0 26px;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:540px;font-size:15px}
+caption{text-align:right;font-size:14px;color:var(--muted);padding-bottom:10px}
+th,td{padding:10px 0 10px 16px;text-align:left;border-bottom:1px solid var(--rule);white-space:nowrap;direction:ltr;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:right;padding:10px 0 10px 16px;white-space:normal;min-width:170px;direction:rtl}
+thead th{font-weight:600;font-size:13px;color:var(--muted);border-bottom:2px solid var(--rule-strong)}
+tbody tr.total td{font-weight:700;border-bottom:2px solid var(--rule-strong);color:var(--ink)}
+tbody tr.sub td{color:var(--muted);font-size:14px}
+tbody tr.sub td:first-child{padding-inline-start:16px}
+tbody tr.hl td{background:var(--yellow-wash)}
+td.pos{color:var(--ink);font-weight:600}
+td.neg{color:var(--muted)}
+
+.chart{margin:26px 0 10px}
+.chart svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:22px;font-size:13px;color:var(--muted);margin-top:10px;flex-wrap:wrap}
+.sw{display:inline-block;width:12px;height:12px;margin-inline-end:7px;vertical-align:-2px}
+
+.note{background:var(--yellow-wash);border-inline-start:4px solid var(--yellow);padding:16px 20px;margin:24px 0}
+.note p{color:var(--ink);margin:0;max-width:68ch;font-size:15px}
+.note p + p{margin-top:10px}
+
+/* benchmark section emphasis */
+.bench{background:var(--surface);border:2px solid var(--rule-strong);padding:30px 28px 14px;margin:8px 0 0}
+.bench .sec-head{margin-bottom:14px}
+.bench table{min-width:480px}
+
+/* the ask */
+.ask{background:#111111;color:#FFFFFF;padding:52px 34px;margin-top:52px;text-align:center}
+.ask .fig{font-family:"Noto Kufi Arabic",sans-serif;font-size:clamp(52px,12vw,104px);font-weight:700;line-height:1;direction:ltr;color:var(--yellow);letter-spacing:-0.02em}
+.ask .cur{font-size:0.34em;font-weight:500;color:#FFFFFF;display:block;margin-top:14px;letter-spacing:0}
+.ask h2{color:#FFFFFF;margin-bottom:18px}
+.ask p{color:#FFFFFF;opacity:0.85;max-width:46ch;margin:26px auto 0;font-size:16px}
+
+footer{padding-top:34px;color:var(--faint);font-size:13px;line-height:1.8}
+
+@media (max-width:620px){
+  .wrap{padding:0 18px 72px}
+  header.masthead{padding:40px 0 30px}
+  .bench{padding:22px 18px 8px}
+  .ask{padding:40px 20px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="brandbar"></div>
+  <h1>سلسلة قهوة مختصة في سوريا</h1>
+  <p class="lead">أربعة فروع في السنة الأولى، وثلاثون فرعا بحلول السنة الخامسة، مبنية على نموذجين قابلين للتكرار وتديرها شركة إدارة تملك العلامة والدليل التشغيلي والمعايير.</p>
+</header>
+
+<section>
+  <div class="sec-head"><h2>النموذجان</h2></div>
+  <p>كل فرع في الخطة هو أحد نموذجين. الأول يبني العلامة، والثاني يحمل التوسع.</p>
+
+  <div class="formats">
+    <div class="fmt">
+      <h3>City Shop</h3>
+      <p class="sub">مقهى بمساحة جلوس وبرنامج طعام. يبني حضور العلامة في المدن الكبرى ويعتمد على مدة بقاء أطول وفاتورة أعلى.</p>
+      <dl>
+        <div><dt>المساحة</dt><dd class="num">50–60 م²</dd></div>
+        <div><dt>متوسط الفاتورة</dt><dd class="num">10</dd></div>
+        <div><dt>الطلبات يوميا</dt><dd class="num">100</dd></div>
+        <div><dt>تكلفة الإنشاء</dt><dd class="num">58,000</dd></div>
+        <div><dt>نقطة التعادل</dt><dd class="num">53 طلبا</dd></div>
+        <div><dt>مدة الاسترداد</dt><dd class="num">7 أشهر</dd></div>
+      </dl>
+    </div>
+    <div class="fmt">
+      <h3>Drive Thru</h3>
+      <p class="sub">نافذة خدمة للسيارات بدون مساحة جلوس وبقائمة مختصرة، على موقع بحركة مرور. تكلفة إنشاء أقل وحجم طلبات أعلى.</p>
+      <dl>
+        <div><dt>المساحة</dt><dd class="num">15–25 م²</dd></div>
+        <div><dt>متوسط الفاتورة</dt><dd class="num">6</dd></div>
+        <div><dt>الطلبات يوميا</dt><dd class="num">160</dd></div>
+        <div><dt>تكلفة الإنشاء</dt><dd class="num">40,500</dd></div>
+        <div><dt>نقطة التعادل</dt><dd class="num">73 طلبا</dd></div>
+        <div><dt>مدة الاسترداد</dt><dd class="num">4 أشهر</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="note">
+    <p>نموذج Drive Thru أقل تكلفة في الإنشاء بنسبة 30٪ ويحقق ربحا تشغيليا أعلى. هذا هو محرك الخطة: فروع City Shop تحمل العلامة في أكبر مدينتين، وفروع Drive Thru تحمل التوسع في باقي المدن.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>اقتصاديات الفرع</h2></div>
+  <p>الفئة الأولى هي دمشق وحلب. الفئة الثانية هي حمص وحماة واللاذقية وطرطوس، حيث يبلغ الإيجار 60٪ من الفئة الأولى ومتوسط الفاتورة 75٪.</p>
+
+  <div class="tablewrap">
+    <table>
+      <caption>الوضع المستقر، للفرع الواحد، سنويا (دولار أمريكي)</caption>
+      <thead>
+        <tr><th>&nbsp;</th><th>City Shop ف١</th><th>Drive Thru ف١</th><th>City Shop ف٢</th><th>Drive Thru ف٢</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>تكلفة الإنشاء</td><td>58,000</td><td>40,500</td><td>58,000</td><td>40,500</td></tr>
+        <tr><td>الإيرادات</td><td>360,000</td><td>345,600</td><td>270,000</td><td>259,200</td></tr>
+        <tr class="sub"><td>تكلفة البضاعة</td><td>108,000</td><td>96,768</td><td>81,000</td><td>72,576</td></tr>
+        <tr class="sub"><td>الإيجار</td><td>60,000</td><td>40,000</td><td>36,000</td><td>24,000</td></tr>
+        <tr class="sub"><td>الرواتب</td><td>40,000</td><td>45,000</td><td>40,000</td><td>45,000</td></tr>
+        <tr class="sub"><td>المرافق والتشغيل</td><td>15,000</td><td>12,000</td><td>15,000</td><td>12,000</td></tr>
+        <tr class="sub"><td>التسويق والرسوم والصيانة</td><td>31,500</td><td>30,420</td><td>24,750</td><td>23,940</td></tr>
+        <tr class="total"><td>الربح التشغيلي</td><td>105,500</td><td>121,412</td><td>73,250</td><td>81,684</td></tr>
+        <tr><td>هامش الربح</td><td>29.3%</td><td>35.1%</td><td>27.1%</td><td>31.5%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>خطة الانتشار</h2></div>
+  <p>تمتلئ الفئة الأولى أولا وتصل إلى حدها عند اثني عشر فرعا في السنة الرابعة. ما بعد ذلك كله في الفئة الثانية، بعد إثبات الدليل التشغيلي ووصول العلامة قبل الفرع.</p>
+
+  <div class="tablewrap">
+    <table>
+      <caption>الفروع العاملة في نهاية كل سنة</caption>
+      <thead>
+        <tr><th>&nbsp;</th><th>س١</th><th>س٢</th><th>س٣</th><th>س٤</th><th>س٥</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>City Shop، الفئة الأولى</td><td>2</td><td>5</td><td>7</td><td>8</td><td>8</td></tr>
+        <tr><td>Drive Thru، الفئة الأولى</td><td>2</td><td>3</td><td>4</td><td>4</td><td>4</td></tr>
+        <tr><td>City Shop، الفئة الثانية</td><td>0</td><td>0</td><td>0</td><td>1</td><td>2</td></tr>
+        <tr><td>Drive Thru، الفئة الثانية</td><td>0</td><td>0</td><td>2</td><td>7</td><td>16</td></tr>
+        <tr class="total"><td>الإجمالي</td><td>4</td><td>8</td><td>13</td><td>20</td><td>30</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>خمس سنوات</h2></div>
+
+  <div class="chart">
+    <svg viewBox="0 0 800 268" role="img" aria-label="الإيرادات والربح التشغيلي لكل سنة، من 811 ألف دولار في السنة الأولى إلى 10.4 مليون دولار في السنة الخامسة">
+      <line x1="40" y1="212" x2="780" y2="212" stroke="var(--rule)" stroke-width="1"/>
+      <rect x="675" y="197" width="64" height="15" fill="var(--rule)"/>
+      <rect x="675" y="209" width="64" height="3" fill="var(--yellow)"/>
+      <text x="707" y="189" text-anchor="middle" font-size="13" fill="var(--muted)" font-family="IBM Plex Sans Arabic, sans-serif">0.81m</text>
+      <text x="707" y="234" text-anchor="middle" font-size="14" fill="var(--ink)" font-family="Noto Kufi Arabic, sans-serif">س١</text>
+      <text x="707" y="253" text-anchor="middle" font-size="12" fill="var(--faint)" font-family="IBM Plex Sans Arabic, sans-serif">4</text>
+
+      <rect x="529" y="169" width="64" height="43" fill="var(--rule)"/>
+      <rect x="529" y="200" width="64" height="12" fill="var(--yellow)"/>
+      <text x="561" y="161" text-anchor="middle" font-size="13" fill="var(--muted)" font-family="IBM Plex Sans Arabic, sans-serif">2.33m</text>
+      <text x="561" y="234" text-anchor="middle" font-size="14" fill="var(--ink)" font-family="Noto Kufi Arabic, sans-serif">س٢</text>
+      <text x="561" y="253" text-anchor="middle" font-size="12" fill="var(--faint)" font-family="IBM Plex Sans Arabic, sans-serif">8</text>
+
+      <rect x="383" y="136" width="64" height="76" fill="var(--rule)"/>
+      <rect x="383" y="191" width="64" height="21" fill="var(--yellow)"/>
+      <text x="415" y="128" text-anchor="middle" font-size="13" fill="var(--muted)" font-family="IBM Plex Sans Arabic, sans-serif">4.18m</text>
+      <text x="415" y="234" text-anchor="middle" font-size="14" fill="var(--ink)" font-family="Noto Kufi Arabic, sans-serif">س٣</text>
+      <text x="415" y="253" text-anchor="middle" font-size="12" fill="var(--faint)" font-family="IBM Plex Sans Arabic, sans-serif">13</text>
+
+      <rect x="237" y="91" width="64" height="121" fill="var(--rule)"/>
+      <rect x="237" y="180" width="64" height="32" fill="var(--yellow)"/>
+      <text x="269" y="83" text-anchor="middle" font-size="13" fill="var(--muted)" font-family="IBM Plex Sans Arabic, sans-serif">6.63m</text>
+      <text x="269" y="234" text-anchor="middle" font-size="14" fill="var(--ink)" font-family="Noto Kufi Arabic, sans-serif">س٤</text>
+      <text x="269" y="253" text-anchor="middle" font-size="12" fill="var(--faint)" font-family="IBM Plex Sans Arabic, sans-serif">20</text>
+
+      <rect x="91" y="22" width="64" height="190" fill="var(--rule)"/>
+      <rect x="91" y="164" width="64" height="48" fill="var(--yellow)"/>
+      <text x="123" y="14" text-anchor="middle" font-size="13" fill="var(--muted)" font-family="IBM Plex Sans Arabic, sans-serif">10.40m</text>
+      <text x="123" y="234" text-anchor="middle" font-size="14" fill="var(--ink)" font-family="Noto Kufi Arabic, sans-serif">س٥</text>
+      <text x="123" y="253" text-anchor="middle" font-size="12" fill="var(--faint)" font-family="IBM Plex Sans Arabic, sans-serif">30</text>
+    </svg>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--rule)"></span>الإيرادات</span>
+      <span><span class="sw" style="background:var(--yellow)"></span>الربح التشغيلي</span>
+    </div>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <caption>حساب الأرباح والخسائر للسلسلة (دولار أمريكي)</caption>
+      <thead>
+        <tr><th>&nbsp;</th><th>س١</th><th>س٢</th><th>س٣</th><th>س٤</th><th>س٥</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>عدد الفروع</td><td>4</td><td>8</td><td>13</td><td>20</td><td>30</td></tr>
+        <tr><td>الإيرادات</td><td>811,000</td><td>2,327,760</td><td>4,175,660</td><td>6,626,724</td><td>10,403,928</td></tr>
+        <tr class="sub"><td>تكلفة البضاعة</td><td>235,000</td><td>675,220</td><td>1,215,044</td><td>1,935,375</td><td>3,047,730</td></tr>
+        <tr class="sub"><td>مصاريف تشغيل الفروع</td><td>400,000</td><td>1,001,132</td><td>1,813,942</td><td>2,962,282</td><td>4,722,131</td></tr>
+        <tr class="total"><td>الربح التشغيلي</td><td>176,000</td><td>651,408</td><td>1,146,674</td><td>1,729,067</td><td>2,634,067</td></tr>
+        <tr><td>هامش الربح</td><td>21.7%</td><td>28.0%</td><td>27.5%</td><td>26.1%</td><td>25.3%</td></tr>
+        <tr><td>تكلفة الإنشاء في السنة</td><td>197,000</td><td>235,950</td><td>287,375</td><td>400,634</td><td>618,582</td></tr>
+        <tr class="hl"><td>صافي النقد</td><td class="neg">−21,000</td><td class="pos">+415,458</td><td class="pos">+859,299</td><td class="pos">+1,328,433</td><td class="pos">+2,015,485</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>إجمالي تكلفة الإنشاء على مدى خمس سنوات يبلغ 1,739,541 دولارا.</p>
+</section>
+
+<section class="bench">
+  <div class="sec-head"><h2>المقارنة بمعايير القطاع</h2></div>
+  <p>هيكل التكلفة مقاس على معايير القطاع المنشورة لعام 2026، لا على تقديرات داخلية.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>&nbsp;</th><th>City Shop</th><th>Drive Thru</th><th>نطاق القطاع</th></tr></thead>
+      <tbody>
+        <tr><td>تكلفة البضاعة</td><td>30.0%</td><td>28.0%</td><td>25–35%</td></tr>
+        <tr class="hl"><td>الرواتب</td><td>11.1%</td><td>13.0%</td><td>20–30%</td></tr>
+        <tr><td>الإيجار</td><td>16.7%</td><td>11.6%</td><td>10–15%</td></tr>
+        <tr><td>التسويق</td><td>5.0%</td><td>5.0%</td><td>2–5%</td></tr>
+        <tr class="total"><td>هامش الربح التشغيلي</td><td>29.3%</td><td>35.1%</td><td>7–20%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <p>بند الرواتب هو البند الوحيد خارج النطاق، وذلك عن قصد. الأجور في سوريا جزء يسير من الأسواق التي اشتقت منها هذه المعايير. الهامش الزائد عن معيار القطاع هو فارق الأجور، وليس ادعاء تشغيليا.</p>
+    <p>بند الإيجار في نموذج City Shop يتجاوز سقف النطاق عند 16.7٪. هذا مذكور صراحة ولم يخفف.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>الافتراضات</h2></div>
+  <p>البن يستورد محمصا جاهزا من مصر بحسب عرض سعر مؤرخ في 26 أغسطس. المعدات آلة من مجموعتين مع مطاحن، مسعرة بالجنيه المصري ومحولة على سعر 51 للدولار.</p>
+
+  <div class="tablewrap">
+    <table>
+      <caption>معدلات التصاعد السنوي، بالدولار</caption>
+      <thead><tr><th>البند</th><th>المعدل</th><th>الأساس</th></tr></thead>
+      <tbody>
+        <tr><td>الإيجار</td><td>12%</td><td style="direction:rtl;text-align:right;white-space:normal">السكن أسرع بنود التضخم، وعودة المهجرين ترفع الطلب</td></tr>
+        <tr><td>الرواتب</td><td>12%</td><td style="direction:rtl;text-align:right;white-space:normal">ارتفاع الحد الأدنى للأجور من قاعدة منخفضة</td></tr>
+        <tr><td>تكلفة الإنشاء</td><td>10%</td><td style="direction:rtl;text-align:right;white-space:normal">معدات مستوردة وطلب مرتفع على المقاولين</td></tr>
+        <tr><td>المرافق والإدارة</td><td>10%</td><td style="direction:rtl;text-align:right;white-space:normal">يتبع المستوى العام للأسعار</td></tr>
+        <tr class="hl"><td>متوسط الفاتورة</td><td>6%</td><td style="direction:rtl;text-align:right;white-space:normal">القيد الملزم، قدرة المستهلك على التحمل محدودة</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <p>الفجوة بين 12٪ على التكاليف و6٪ على الفاتورة هي ما يضغط الهامش من 32٪ إلى 25٪ خلال خمس سنوات. هذا مدرج في الأرقام أعلاه.</p>
+    <p>فترة التدرج اثنا عشر شهرا لفرع City Shop وستة أشهر لفرع Drive Thru في السنة الأولى، وتقصر إلى ستة وثلاثة بحلول السنة الرابعة مع ترسخ العلامة. الافتتاحات محسوبة ربع سنوية لا دفعة واحدة في بداية كل سنة.</p>
+  </div>
+</section>
+
+<div class="ask">
+  <h2>المطلوب</h2>
+  <div class="fig">600,000<span class="cur">دولار أمريكي</span></div>
+  <p>لتمويل أربعة فروع في السنة الأولى: فرعا City Shop وفرعا Drive Thru، جميعها في الفئة الأولى.</p>
+</div>
+
+<footer>
+  جميع الأرقام بالدولار الأمريكي. أعد في 15 سبتمبر 2026. أرقام الإيجار والأجور والرسوم الجمركية افتراضات عمل قيد التحقق الميداني.
+</footer>
+
+</div>
+</body>
+</html>
